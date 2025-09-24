@@ -8,9 +8,12 @@ import NextLink from "next/link";
 import { FaCartShopping } from "react-icons/fa6";
 import { FaUserCircle } from "react-icons/fa";
 import useThemeDetector from "@/app/hooks/useThemeDetector";
+import { useTheme } from "next-themes";
 
 export default function Header() {
   const isDarkMode = useThemeDetector();
+  const {} = useTheme();
+
   return (
     <Box
       position={"fixed"}
@@ -22,14 +25,16 @@ export default function Header() {
       display={"flex"}
       justifyContent={"space-between"}
       py={8}
+      px={6}
     >
       <Image
         src={isDarkMode ? whiteTimyLogo : darkTimyLogo}
         alt="Timy Logo"
         width={200}
         height={200}
+        style={{ width: "30vw", height: "auto", maxWidth: "200px" }}
       />
-      <Box display={"flex"} gap={10}>
+      <Box display={{ mdDown: "none", md: "flex" }} gap={10}>
         <ChakraLink asChild>
           <NextLink href="/best-offers">Best Offers</NextLink>
         </ChakraLink>
@@ -40,7 +45,7 @@ export default function Header() {
           <NextLink href="/feminine">Feminine</NextLink>
         </ChakraLink>
       </Box>
-      <Box alignItems={"center"} display={"flex"} gap={6}>
+      <Box alignItems={"center"} display={"flex"}>
         <Button variant={"ghost"} asChild>
           <a href="/cart">
             <FaCartShopping />
