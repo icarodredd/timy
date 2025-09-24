@@ -8,6 +8,10 @@ import { FaUserCircle } from "react-icons/fa";
 export default function Header() {
   return (
     <Box
+      position={"fixed"}
+      insetX={0}
+      top={0}
+      zIndex={1}
       backdropFilter={"blur(8.7px)"}
       as={"header"}
       display={"flex"}
