@@ -15,20 +15,31 @@ export default function MainCarouselOffers({
   const [emblaRef] = useEmblaCarousel({ loop: false }, [Autoplay()]);
 
   return (
-    <Box pt={"40"} className="embla" ref={emblaRef}>
+    <Box pt={"18vh"} className="embla" ref={emblaRef}>
       <div className="embla__container">
         {mainOffers.map((offer) => (
-          <div key={offer.id} className="embla__slide">
-            <Link href={"#"}>
+          <Box
+            key={offer.id}
+            className="embla__slide"
+            w="100vw"
+            h="60vh"
+            overflow="hidden"
+          >
+            <Link className="w-full" href={"#"}>
               <Image
-                className="w-full"
                 src={offer.image_url}
                 height={400}
                 width={1400}
                 alt={offer.title}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  borderRadius: "12px",
+                }}
               />
             </Link>
-          </div>
+          </Box>
         ))}
       </div>
     </Box>
