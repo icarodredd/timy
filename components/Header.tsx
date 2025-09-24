@@ -1,11 +1,16 @@
+"use client";
+
 import Image from "next/image";
-import timyLogo from "@/public/timy-logo.png";
+import whiteTimyLogo from "@/public/timy-logo-white.png";
+import darkTimyLogo from "@/public/timy-logo-dark.png";
 import { Box, Button, Link as ChakraLink } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { FaCartShopping } from "react-icons/fa6";
 import { FaUserCircle } from "react-icons/fa";
+import useThemeDetector from "@/app/hooks/useThemeDetector";
 
 export default function Header() {
+  const isDarkMode = useThemeDetector();
   return (
     <Box
       position={"fixed"}
@@ -18,7 +23,12 @@ export default function Header() {
       justifyContent={"space-between"}
       py={8}
     >
-      <Image src={timyLogo} alt="Timy Logo" width={200} height={200} />
+      <Image
+        src={isDarkMode ? whiteTimyLogo : darkTimyLogo}
+        alt="Timy Logo"
+        width={200}
+        height={200}
+      />
       <Box display={"flex"} gap={10}>
         <ChakraLink asChild>
           <NextLink href="/best-offers">Best Offers</NextLink>
