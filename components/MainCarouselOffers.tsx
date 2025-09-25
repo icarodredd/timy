@@ -1,23 +1,19 @@
 "use client";
 
-import { MainOffer } from "@/app/page";
+import { Offer } from "@/app/page";
 import { Box } from "@chakra-ui/react";
 import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function MainCarouselOffers({
-  mainOffers,
-}: {
-  mainOffers: MainOffer[];
-}) {
+export default function MainCarouselOffers({ offers }: { offers: Offer[] }) {
   const [emblaRef] = useEmblaCarousel({ loop: false }, [Autoplay()]);
 
   return (
     <Box pt={"18vh"} className="embla" ref={emblaRef}>
       <div className="embla__container">
-        {mainOffers.map((offer) => (
+        {offers.map((offer) => (
           <Box
             key={offer.id}
             className="embla__slide"

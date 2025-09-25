@@ -1,8 +1,8 @@
 import MainCarouselOffers from "@/components/MainCarouselOffers";
 import { createClient } from "@/utils/supabase/server";
-import { Box } from "@chakra-ui/react";
+import { Box, Heading } from "@chakra-ui/react";
 
-export interface MainOffer {
+export interface Offer {
   id: number;
   created_at: string;
   title: string;
@@ -22,10 +22,16 @@ export default async function Home() {
       <Box
         as={"section"}
         display={"flex"}
+        flexDirection={"column"}
         width={"full"}
         justifyContent={"center"}
       >
-        <MainCarouselOffers mainOffers={mainOffers as MainOffer[]} />
+        <MainCarouselOffers offers={mainOffers as Offer[]} />
+        <Box as={"section"}>
+          <Heading textAlign={"start"} fontWeight={"bold"} size={"4xl"} py={12}>
+            All Watches
+          </Heading>
+        </Box>
       </Box>
     </main>
   );
