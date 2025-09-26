@@ -25,13 +25,13 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.embla {
+.embla_main {
   overflow: hidden;
 }
-.embla__container {
+.embla__container_main {
   display: flex;
 }
-.embla__slide {
+.embla__slide_main {
   flex: 0 0 100%;
   display: flex;
   justify-content: center;
