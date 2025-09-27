@@ -24,7 +24,7 @@ export default function Header() {
       as={"header"}
       display={"flex"}
       justifyContent={"space-between"}
-      py={8}
+      py={2}
       px={6}
     >
       <Image
