@@ -1,7 +1,6 @@
 "use client";
 
 import { Offer } from "@/app/page";
-import { Box } from "@chakra-ui/react";
 import Autoplay from "embla-carousel-autoplay";
 import {
   DotButton,
@@ -15,9 +14,10 @@ import {
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 import Link from "next/link";
+import OfferCard from "./OfferCard";
 
 export default function OffersCarousel({ offers }: { offers: Offer[] }) {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false }, [Autoplay()]);
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay()]);
   const { selectedIndex, scrollSnaps, onDotButtonClick } =
     useDotButton(emblaApi);
   const {
@@ -33,20 +33,7 @@ export default function OffersCarousel({ offers }: { offers: Offer[] }) {
         <div className="embla__container">
           {offers.map((offer) => (
             <div className="embla__slide" key={offer.id}>
-              <Link className="w-full" href={"#"}>
-                <Image
-                  src={offer.image_url}
-                  height={400}
-                  width={1400}
-                  alt={offer.title}
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    borderRadius: "12px",
-                  }}
-                />
-              </Link>
+              <OfferCard offer={offer} />
             </div>
           ))}
         </div>
