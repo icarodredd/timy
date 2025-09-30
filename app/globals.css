@@ -4,7 +4,8 @@
   --background: #ffffff;
   --foreground: #171717;
   --text-body: #111827;
-  --text-high-contrast-rgb-value: 17, 24, 39;
+  --text-high-contrast-rgb-value: 49, 49, 49;
+  --detail-medium-contrast: rgb(234, 234, 234);
 }
 
 @theme inline {
@@ -19,7 +20,8 @@
     --background: #0a0a0a;
     --foreground: #ededed;
     --text-body: #e5e7eb;
-    --text-high-contrast-rgb-value: 229, 231, 235;
+    --text-high-contrast-rgb-value: 230, 230, 230;
+    --detail-medium-contrast: rgb(25, 25, 25);
   }
 }
 
@@ -47,7 +49,20 @@ body {
   margin: auto;
   --slide-height: 19rem;
   --slide-spacing: 1rem;
+  --slide-size: 100%;
 }
+
+@media (min-width: 400px) {
+  .embla {
+    --slide-size: 40%;
+  }
+}
+@media (min-width: 1000px) {
+  .embla {
+    --slide-size: 20%;
+  }
+}
+
 .embla__viewport {
   overflow: hidden;
 }
@@ -78,7 +93,7 @@ body {
   grid-template-columns: auto 1fr;
   justify-content: space-between;
   gap: 1.2rem;
-  margin-top: 1.8rem;
+  margin-top: 1rem;
 }
 .embla__buttons {
   display: grid;
@@ -99,8 +114,8 @@ body {
   padding: 0;
   margin: 0;
   box-shadow: inset 0 0 0 0.2rem var(--detail-medium-contrast);
-  width: 3.6rem;
-  height: 3.6rem;
+  width: 2.6rem;
+  height: 2.6rem;
   z-index: 1;
   border-radius: 50%;
   color: var(--text-body);
@@ -118,6 +133,7 @@ body {
 .embla__dots {
   display: flex;
   flex-wrap: wrap;
+  gap: 0.3rem;
   justify-content: flex-end;
   align-items: center;
   margin-right: calc((2.6rem - 1.4rem) / 2 * -1);
@@ -134,8 +150,8 @@ body {
   border: 0;
   padding: 0;
   margin: 0;
-  width: 2.6rem;
-  height: 2.6rem;
+  width: 1.6rem;
+  height: 1.6rem;
   display: flex;
   align-items: center;
   justify-content: center;
