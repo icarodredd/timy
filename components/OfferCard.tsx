@@ -12,7 +12,7 @@ export default function OfferCard({ offer }: { offer: Offer }) {
           src={offer.image_url}
           alt={offer.title}
         />
-        <Card.Body gap="2">
+        <Card.Body justifyContent={"space-around"} gap="2">
           <Card.Title>{offer.title}</Card.Title>
           <Card.Description>{offer.description}</Card.Description>
           <Text
