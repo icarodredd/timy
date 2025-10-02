@@ -8,18 +8,16 @@ import NextLink from "next/link";
 import { FaCartShopping } from "react-icons/fa6";
 import { FaUserCircle } from "react-icons/fa";
 import useThemeDetector from "@/app/hooks/useThemeDetector";
-import { useTheme } from "next-themes";
 
 export default function Header() {
   const isDarkMode = useThemeDetector();
-  const {} = useTheme();
 
   return (
     <Box
       position={"fixed"}
       insetX={0}
       top={0}
-      zIndex={1}
+      zIndex={100}
       backdropFilter={"blur(8.7px)"}
       as={"header"}
       display={"flex"}
