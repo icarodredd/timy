@@ -12,9 +12,8 @@ import {
   usePrevNextButtons,
 } from "@/components/ui/EmblaCarouselArrowButtons";
 import useEmblaCarousel from "embla-carousel-react";
-import Image from "next/image";
-import Link from "next/link";
 import OfferCard from "./OfferCard";
+import { Box } from "@chakra-ui/react";
 
 export default function OffersCarousel({ offers }: { offers: Offer[] }) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay()]);
@@ -32,9 +31,9 @@ export default function OffersCarousel({ offers }: { offers: Offer[] }) {
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container">
           {offers.map((offer) => (
-            <div className="embla__slide" key={offer.id}>
+            <Box className="embla__slide" key={offer.id}>
               <OfferCard offer={offer} />
-            </div>
+            </Box>
           ))}
         </div>
       </div>

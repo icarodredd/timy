@@ -18,6 +18,7 @@ export default async function Home() {
 
   const { data: mainOffers } = await supabase.from("main_offers").select();
   const { data: allOffers } = await supabase.from("all_offers").select();
+  const { data: goldWatches } = await supabase.from("gold_watches").select();
 
   return (
     <main>
@@ -34,6 +35,12 @@ export default async function Home() {
             All Watches
           </Heading>
           <OffersCarousel offers={allOffers as Offer[]} />
+        </Box>
+        <Heading textAlign={"start"} fontWeight={"bold"} size={"4xl"} py={12}>
+          Gold Watches
+        </Heading>
+        <Box as={"section"}>
+          <OffersCarousel offers={goldWatches as Offer[]} />
         </Box>
       </Box>
     </main>

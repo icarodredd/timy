@@ -54,12 +54,17 @@ body {
 
 @media (min-width: 400px) {
   .embla {
+    --slide-size: 70%;
+  }
+}
+@media (min-width: 650px) {
+  .embla {
     --slide-size: 40%;
   }
 }
 @media (min-width: 1000px) {
   .embla {
-    --slide-size: 20%;
+    --slide-size: 30%;
   }
 }
 
