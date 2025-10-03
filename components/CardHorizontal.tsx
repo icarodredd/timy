@@ -2,10 +2,15 @@ import { Badge, Box, Button, Card, HStack, Image } from "@chakra-ui/react";
 import Link from "next/link";
 
 export const CardHorizontal = () => (
-  <Card.Root flexDirection="row" overflow="hidden" maxW={"8/12"}>
+  <Card.Root
+    flexDirection="row"
+    overflow="hidden"
+    minW={{ base: "90vw", sm: "30vw" }}
+  >
     <Image
       objectFit="cover"
       maxW="300px"
+      minW={"70px"}
       src="./warranty-watch.jpg"
       alt="A omega watch"
     />
