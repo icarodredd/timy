@@ -1,3 +1,4 @@
+import { CardHorizontal } from "@/components/CardHorizontal";
 import MainCarouselOffers from "@/components/MainCarouselOffers";
 import OffersCarousel from "@/components/OffersCarousel";
 import { createClient } from "@/utils/supabase/server";
@@ -41,6 +42,9 @@ export default async function Home() {
         </Heading>
         <Box as={"section"}>
           <OffersCarousel offers={goldWatches as Offer[]} />
+        </Box>
+        <Box py={12} display={"flex"} justifyContent={"center"}>
+          <CardHorizontal />
         </Box>
       </Box>
     </main>
