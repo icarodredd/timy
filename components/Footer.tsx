@@ -37,6 +37,6 @@ export default function Footer() {
   );
 }
 const socialLinks = [
-  { href: "https://github.com", icon: <SiGithub /> },
-  { href: "https://www.linkedin.com", icon: <SiLinkedin /> },
+  { href: "https://github.com/icarodredd", icon: <SiGithub /> },
+  { href: "https://www.linkedin.com/icarodredd", icon: <SiLinkedin /> },
 ];
