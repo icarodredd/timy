@@ -17,7 +17,7 @@ export interface Offer {
 export default async function Home() {
   const supabase = await createClient();
 
-  const { data: mainOffers } = await supabase.from("main_offers").select();
+  const { data: mainBanners } = await supabase.from("main_banners").select();
   const { data: allOffers } = await supabase.from("all_offers").select();
   const { data: goldWatches } = await supabase.from("gold_watches").select();
 
@@ -30,7 +30,7 @@ export default async function Home() {
         width={"full"}
         justifyContent={"center"}
       >
-        <MainCarouselOffers offers={mainOffers as Offer[]} />
+        <MainCarouselOffers offers={mainBanners as Offer[]} />
         <Box as={"section"}>
           <Heading textAlign={"start"} fontWeight={"bold"} size={"4xl"} py={12}>
             All Watches
