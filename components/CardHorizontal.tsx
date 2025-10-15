@@ -1,4 +1,4 @@
-import { Badge, Box, Button, Card, HStack, Image } from "@chakra-ui/react";
+import { Box, Button, Card, Image } from "@chakra-ui/react";
 import Link from "next/link";
 
 export const CardHorizontal = () => (
