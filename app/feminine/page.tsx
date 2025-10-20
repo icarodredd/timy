@@ -10,11 +10,12 @@ type Search = {
   maxPrice?: string;
 };
 
-export default async function FemininePage({
-  searchParams,
-}: {
-  searchParams: Search;
-}) {
+export default async function FemininePage(
+  props: {
+    searchParams: Promise<Search>;
+  }
+) {
+  const searchParams = await props.searchParams;
   const supabase = await createClient();
   const minPrice = Number(await searchParams?.minPrice) || 0;
   const maxPrice = Number(await searchParams?.maxPrice) || 50000;
