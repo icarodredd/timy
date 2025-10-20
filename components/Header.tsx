@@ -7,7 +7,7 @@ import { Box, Link as ChakraLink } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { FaCartShopping } from "react-icons/fa6";
 import { FaUserCircle } from "react-icons/fa";
-import useThemeDetector from "@/app/hooks/useThemeDetector";
+import useThemeDetector from "@/hooks/useThemeDetector";
 import Link from "next/link";
 import { Button, Menu, Portal } from "@chakra-ui/react";
 import { IoMenu } from "react-icons/io5";

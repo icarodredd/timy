@@ -3,7 +3,7 @@
 import { Container, HStack, Icon, Link, Stack } from "@chakra-ui/react";
 import { SiGithub, SiLinkedin } from "react-icons/si";
 import { Copyright } from "./ui/copyright";
-import useThemeDetector from "@/app/hooks/useThemeDetector";
+import useThemeDetector from "@/hooks/useThemeDetector";
 import whiteTimyLogo from "@/public/timy-logo-white.png";
 import darkTimyLogo from "@/public/timy-logo-dark.png";
 import Image from "next/image";
