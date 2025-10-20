@@ -65,13 +65,12 @@ export default async function MasculinePage({
           <Heading textAlign={"start"} fontWeight={"bold"} size={"4xl"} py={12}>
             Masculine Department
           </Heading>
-
           {masculineOffers.length > 0 ? (
-            masculineOffers?.map((offer) => (
-              <Grid templateColumns="repeat(4, 1fr)" gap="6">
+            <Grid templateColumns="repeat(4, 1fr)" gap="6">
+              {masculineOffers?.map((offer) => (
                 <OfferCard key={offer.id} offer={offer} />
-              </Grid>
-            ))
+              ))}
+            </Grid>
           ) : (
             <EmptyMessage />
           )}

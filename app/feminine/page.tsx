@@ -16,8 +16,8 @@ export default async function FemininePage({
   searchParams: Search;
 }) {
   const supabase = await createClient();
-  const minPrice = Number(searchParams?.minPrice) || 0;
-  const maxPrice = Number(searchParams?.maxPrice) || 50000;
+  const minPrice = Number(await searchParams?.minPrice) || 0;
+  const maxPrice = Number(await searchParams?.maxPrice) || 50000;
 
   const { data } = await supabase
     .from("all_offers")
@@ -61,11 +61,11 @@ export default async function FemininePage({
             Feminine Department
           </Heading>
           {feminineOffers.length > 0 ? (
-            feminineOffers?.map((offer) => (
-              <Grid templateColumns="repeat(4, 1fr)" gap="6">
+            <Grid templateColumns="repeat(4, 1fr)" gap="6">
+              {feminineOffers?.map((offer) => (
                 <OfferCard key={offer.id} offer={offer} />
-              </Grid>
-            ))
+              ))}
+            </Grid>
           ) : (
             <EmptyMessage />
           )}
