@@ -33,7 +33,8 @@ export default function RangePriceFilter({
       value={value}
       onValueChange={(e) => setValue(e.value as [number, number])}
       maxW="md"
-      max={1000}
+      min={minPrice}
+      max={maxPrice}
       minStepsBetweenThumbs={8}
     >
       <Slider.Label>Price</Slider.Label>
