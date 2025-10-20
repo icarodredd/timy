@@ -40,9 +40,6 @@ export default function Header() {
             <Portal>
               <Menu.Positioner>
                 <Menu.Content>
-                  <Menu.Item asChild value="best-offers">
-                    <Link href={"/best-offers"}>Best Offers</Link>
-                  </Menu.Item>
                   <Menu.Item asChild value="all-offers">
                     <Link href={"/all-offers"}>All Offers</Link>
                   </Menu.Item>
@@ -68,9 +65,6 @@ export default function Header() {
         </Link>
       </Box>
       <Box display={{ mdDown: "none", md: "flex" }} gap={10}>
-        <ChakraLink asChild>
-          <NextLink href="/best-offers">Best Offers</NextLink>
-        </ChakraLink>
         <ChakraLink asChild>
           <NextLink href="/masculine">Masculine</NextLink>
         </ChakraLink>
