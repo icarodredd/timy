@@ -1,7 +1,9 @@
 import OfferCard from "@/components/OfferCard";
 import RangePriceFilter from "@/components/ui/RangePriceFilter";
 import { createClient } from "@/utils/supabase/server";
-import { Box, Breadcrumb, Grid, Heading } from "@chakra-ui/react";
+import { Box, Breadcrumb, Em, Grid, Heading } from "@chakra-ui/react";
+import { Offer } from "../page";
+import EmptyMessage from "@/components/ui/EmptyMessage";
 
 type Search = {
   minPrice?: string;
@@ -17,12 +19,14 @@ export default async function MasculinePage({
   const minPrice = Number(searchParams?.minPrice) || 0;
   const maxPrice = Number(searchParams?.maxPrice) || 50000;
 
-  const { data: masculineOffers } = await supabase
+  const { data } = await supabase
     .from("all_offers")
     .select()
     .eq("gender", "masculine")
     .gte("price", minPrice)
     .lte("price", maxPrice);
+
+  const masculineOffers = data as Offer[];
 
   return (
     <main style={{ paddingTop: "18vh" }}>
@@ -52,15 +56,25 @@ export default async function MasculinePage({
           </Heading>
           <RangePriceFilter minPrice={minPrice || 0} maxPrice={maxPrice || 0} />
         </Box>
-        <Box display={"flex"} flexDirection={"column"} width={"80%"}>
+        <Box
+          display={"flex"}
+          flexDirection={"column"}
+          width={"80%"}
+          justifyContent={"center"}
+        >
           <Heading textAlign={"start"} fontWeight={"bold"} size={"4xl"} py={12}>
             Masculine Department
           </Heading>
-          <Grid templateColumns="repeat(4, 1fr)" gap="6">
-            {masculineOffers?.map((offer) => (
-              <OfferCard key={offer.id} offer={offer} />
-            ))}
-          </Grid>
+
+          {masculineOffers.length > 0 ? (
+            masculineOffers?.map((offer) => (
+              <Grid templateColumns="repeat(4, 1fr)" gap="6">
+                <OfferCard key={offer.id} offer={offer} />
+              </Grid>
+            ))
+          ) : (
+            <EmptyMessage />
+          )}
         </Box>
       </Box>
     </main>
