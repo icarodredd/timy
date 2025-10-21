@@ -48,19 +48,26 @@ export default async function FemininePage(props: {
         display={"flex"}
         width={"full"}
         justifyContent={"space-between"}
+        flexDirection={{ lgDown: "column" }}
       >
-        <Box display={"flex"} flexDirection={"column"} width={"15%"}>
+        <Box display={"flex"} flexDirection={"column"} width={{ lg: "15%" }}>
           <Heading textAlign={"start"} fontWeight={"bold"} size={"xl"} py={4}>
             Filters
           </Heading>
           <RangePriceFilter minPrice={minPrice || 0} maxPrice={maxPrice || 0} />
         </Box>
-        <Box display={"flex"} flexDirection={"column"} width={"80%"}>
+        <Box
+          display={"flex"}
+          flexDirection={"column"}
+          width={{ md: "100%", lg: "80%" }}
+        >
           <Heading textAlign={"start"} fontWeight={"bold"} size={"4xl"} py={12}>
             Feminine Department
           </Heading>
           {feminineOffers.length > 0 ? (
-            <Grid templateColumns="repeat(4, 1fr)" gap="6">
+            <Grid
+              templateColumns={{ md: "repeat(3, 1fr)", lg: "repeat(4, 1fr)" }}
+            >
               {feminineOffers?.map((offer) => (
                 <OfferCard key={offer.id} offer={offer} />
               ))}

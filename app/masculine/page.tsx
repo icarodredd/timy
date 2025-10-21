@@ -48,8 +48,9 @@ export default async function MasculinePage(props: {
         display={"flex"}
         width={"full"}
         justifyContent={"space-between"}
+        flexDirection={{ lgDown: "column" }}
       >
-        <Box display={"flex"} flexDirection={"column"} width={"15%"}>
+        <Box display={"flex"} flexDirection={"column"} width={{ lg: "15%" }}>
           <Heading textAlign={"start"} fontWeight={"bold"} size={"xl"} py={4}>
             Filters
           </Heading>
@@ -58,14 +59,17 @@ export default async function MasculinePage(props: {
         <Box
           display={"flex"}
           flexDirection={"column"}
-          width={"80%"}
+          width={{ md: "100%", lg: "80%" }}
           justifyContent={"center"}
         >
           <Heading textAlign={"start"} fontWeight={"bold"} size={"4xl"} py={12}>
             Masculine Department
           </Heading>
           {masculineOffers.length > 0 ? (
-            <Grid templateColumns="repeat(4, 1fr)" gap="6">
+            <Grid
+              templateColumns={{ md: "repeat(3, 1fr)", lg: "repeat(4, 1fr)" }}
+              gap="6"
+            >
               {masculineOffers?.map((offer) => (
                 <OfferCard key={offer.id} offer={offer} />
               ))}
