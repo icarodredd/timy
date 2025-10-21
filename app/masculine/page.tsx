@@ -10,11 +10,9 @@ type Search = {
   maxPrice?: string;
 };
 
-export default async function MasculinePage(
-  props: {
-    searchParams: Promise<Search>;
-  }
-) {
+export default async function MasculinePage(props: {
+  searchParams: Promise<Search>;
+}) {
   const searchParams = await props.searchParams;
   const supabase = await createClient();
   const minPrice = Number(searchParams?.minPrice) || 0;
@@ -30,7 +28,7 @@ export default async function MasculinePage(
   const masculineOffers = data as Offer[];
 
   return (
-    <main style={{ paddingTop: "18vh" }}>
+    <main style={{ paddingTop: "10vh" }}>
       <Breadcrumb.Root size={"lg"} my={2}>
         <Breadcrumb.List>
           <Breadcrumb.Item>
