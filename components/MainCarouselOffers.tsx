@@ -11,7 +11,7 @@ export default function MainCarouselOffers({ offers }: { offers: Offer[] }) {
   const [emblaRef] = useEmblaCarousel({ loop: false }, [Autoplay()]);
 
   return (
-    <Box pt={"18vh"} className="embla_main" ref={emblaRef}>
+    <Box pt={"10vh"} className="embla_main" ref={emblaRef}>
       <div className="embla__container_main">
         {offers.map((offer) => (
           <Box
