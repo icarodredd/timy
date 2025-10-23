@@ -1,17 +1,23 @@
+"use client";
+
 import { Offer } from "@/app/page";
-import { Button, Card, Image, Text } from "@chakra-ui/react";
+import { useCartStore } from "@/hooks/useCartStore";
+import { Box, Button, Card, Image, Text } from "@chakra-ui/react";
 import Link from "next/link";
 
 export default function OfferCard({ offer }: { offer: Offer }) {
+  const { addToCart, removeFromCart, offers } = useCartStore();
   return (
-    <Link className="w-full h-full" href={"#"}>
+    <Box className="w-full h-full">
       <Card.Root maxW="sm" height={"100%"} border={"none"} overflow="hidden">
-        <Image
-          backgroundColor={"white"}
-          padding={"40px"}
-          src={offer.image_url}
-          alt={offer.title}
-        />
+        <Link href={"/"}>
+          <Image
+            backgroundColor={"white"}
+            padding={"40px"}
+            src={offer.image_url}
+            alt={offer.title}
+          />
+        </Link>
         <Card.Body justifyContent={"space-around"} gap="2">
           <Card.Title>{offer.title}</Card.Title>
           <Card.Description>{offer.description}</Card.Description>
@@ -29,9 +35,17 @@ export default function OfferCard({ offer }: { offer: Offer }) {
         </Card.Body>
         <Card.Footer gap="2">
           <Button variant="solid">Buy now</Button>
-          <Button variant="ghost">Add to cart</Button>
+          {offers.includes(offer.id) ? (
+            <Button onClick={() => removeFromCart(offer.id)} variant="ghost">
+              Remove from cart
+            </Button>
+          ) : (
+            <Button onClick={() => addToCart(offer.id)} variant="ghost">
+              Add to cart
+            </Button>
+          )}
         </Card.Footer>
       </Card.Root>
-    </Link>
+    </Box>
   );
 }
