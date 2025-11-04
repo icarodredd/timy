@@ -3,14 +3,19 @@
 import Image from "next/image";
 import whiteTimyLogo from "@/public/timy-logo-white.png";
 import darkTimyLogo from "@/public/timy-logo-dark.png";
-import { Box, Link as ChakraLink } from "@chakra-ui/react";
+import {
+  Box,
+  Link as ChakraLink,
+  Button,
+  Menu,
+  Portal,
+} from "@chakra-ui/react";
 import NextLink from "next/link";
-import { FaCartShopping } from "react-icons/fa6";
 import { FaUserCircle } from "react-icons/fa";
 import useThemeDetector from "@/hooks/useThemeDetector";
 import Link from "next/link";
-import { Button, Menu, Portal } from "@chakra-ui/react";
 import { IoMenu } from "react-icons/io5";
+import Cart from "./ui/Cart";
 
 export default function Header() {
   const isDarkMode = useThemeDetector();
@@ -73,11 +78,7 @@ export default function Header() {
         </ChakraLink>
       </Box>
       <Box alignItems={"center"} display={"flex"}>
-        <Button variant={"ghost"} asChild>
-          <a href="/cart">
-            <FaCartShopping />
-          </a>
-        </Button>
+        <Cart />
         <Button variant={"ghost"} asChild>
           <a href="/profile">
             <FaUserCircle />
