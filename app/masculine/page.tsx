@@ -54,7 +54,7 @@ export default async function MasculinePage(props: {
           <Heading textAlign={"start"} fontWeight={"bold"} size={"xl"} py={4}>
             Filters
           </Heading>
-          <RangePriceFilter minPrice={minPrice || 0} maxPrice={maxPrice || 0} />
+          <RangePriceFilter minPrice={0} maxPrice={100000} />
         </Box>
         <Box
           display={"flex"}

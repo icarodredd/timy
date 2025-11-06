@@ -23,8 +23,6 @@ const Cart = () => {
     fetchOffers();
   }, [offers]);
 
-  offers && console.log(cartData);
-
   return (
     <Drawer.Root>
       <Drawer.Trigger asChild>
