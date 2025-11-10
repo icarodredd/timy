@@ -1,3 +1,5 @@
+"use client";
+
 import { Box, Text } from "@chakra-ui/react";
 import OffersCarousel from "./OffersCarousel";
 import { createClient } from "@/utils/supabase/client";
@@ -13,7 +15,8 @@ export default function OfferRecomendations({ offerId }: { offerId: string }) {
       const { data: offersFiltered } = await supabase
         .from("all_offers")
         .select()
-        .neq("id", offerId);
+        .neq("id", offerId)
+        .limit(10);
 
       setAllOffersFiltered(offersFiltered as Offer[]);
     };
@@ -22,11 +25,13 @@ export default function OfferRecomendations({ offerId }: { offerId: string }) {
   }, []);
 
   return (
-    <Box as={"section"}>
-      <Text fontSize={"xl"} fontWeight={"bold"} my={2}>
+    <Box as={"section"} mt={14}>
+      <Text fontSize={"2xl"} fontWeight={"bold"} my={2}>
         You may also like
       </Text>
-      {/*  <OffersCarousel offers={allOffersFiltered as Offer[]} /> */}
+      {allOffersFiltered && (
+        <OffersCarousel offers={allOffersFiltered as Offer[]} />
+      )}
     </Box>
   );
 }
