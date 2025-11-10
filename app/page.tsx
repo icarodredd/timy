@@ -12,6 +12,7 @@ export interface Offer {
   image_url: string;
   stock: number;
   price: number;
+  images: string[];
 }
 
 export default async function Home() {
