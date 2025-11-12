@@ -10,7 +10,7 @@ export default function OfferCard({ offer }: { offer: Offer }) {
   return (
     <Box className="w-full h-full">
       <Card.Root maxW="sm" height={"100%"} border={"none"} overflow="hidden">
-        <Link href={`/offers/${offer.id}`}>
+        <Link href={`/offer/${offer.id}`}>
           <Image
             backgroundColor={"white"}
             padding={"40px"}
