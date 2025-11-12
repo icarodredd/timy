@@ -1,6 +1,6 @@
 "use client";
 
-import { Offer } from "@/app/page";
+import { Offer, Review } from "@/app/page";
 import { createClient } from "@/utils/supabase/client";
 import { Box, Button } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
@@ -9,6 +9,10 @@ import { use } from "react";
 import { Text } from "@chakra-ui/react";
 import { useCartStore } from "@/hooks/useCartStore";
 import OfferRecomendations from "@/components/OfferRecomendations";
+import OfferReviews from "@/components/OfferReviews";
+import { RatingGroup } from "@chakra-ui/react";
+import { Icon } from "@chakra-ui/react";
+import { MdLocalShipping } from "react-icons/md";
 
 export default function OfferPage({
   params,
@@ -33,13 +37,19 @@ export default function OfferPage({
     fetchOffer();
   }, []);
 
+  const getMedianRating = (reviews: Review[]) => {
+    return (
+      reviews.reduce((acc, review) => acc + review.rating, 0) / reviews.length
+    );
+  };
+
   return (
     <main style={{ paddingTop: "10vh" }}>
       {offer && (
         <Box display={"flex"} justifyContent={"space-between"}>
           <Box display={"flex"} gap={"4"} justifyContent={"start"}>
             <Box display={"flex"} flexDir={"column"} gap={"4"}>
-              {offer?.images.map((url, index) => (
+              {offer?.images?.map((url, index) => (
                 <Image
                   key={index}
                   className="rounded-lg"
@@ -58,7 +68,7 @@ export default function OfferPage({
               height={500}
             />
           </Box>
-          <Box display={"flex"} flexDir={"column"} width={"60%"}>
+          <Box display={"flex"} flexDir={"column"} width={"60%"} gap={4}>
             <Box display={"flex"} justifyContent={"space-between"}>
               <Text
                 textTransform={"uppercase"}
@@ -67,20 +77,41 @@ export default function OfferPage({
               >
                 {offer.title}
               </Text>
-              <Text fontSize={"xl"}>{offer.reviews.length} reviews</Text>
+              <Text fontSize={"xl"}>
+                <RatingGroup.Root
+                  count={5}
+                  defaultValue={getMedianRating(offer.reviews)}
+                  readOnly
+                  size="sm"
+                >
+                  <RatingGroup.HiddenInput />
+                  <RatingGroup.Control />
+                </RatingGroup.Root>{" "}
+                {offer.reviews.length} reviews
+              </Text>
             </Box>
 
             <Text fontSize={"lg"}>{offer.description}</Text>
-            <Text fontSize={"2xl"} fontWeight={"bold"}>
+            <Text fontSize={"4xl"} fontWeight={"bold"}>
               ${offer.price.toFixed(2)}
+            </Text>
+            <Text my={5} fontWeight={"bold"} textAlign={"center"}>
+              • Enjoy free shipping!
             </Text>
             <Button size={"2xl"} onClick={() => addToCart(offer.id)}>
               Add to cart
             </Button>
+            <Text textAlign={"center"} my={10}>
+              <Icon size={"2xl"}>
+                <MdLocalShipping />
+              </Icon>{" "}
+              Ships In 2 - 3 Weeks
+            </Text>
           </Box>
         </Box>
       )}
       <OfferRecomendations offerId={offerId} />
+      <OfferReviews offerId={offerId} />
     </main>
   );
 }
