@@ -13,12 +13,14 @@ export interface Offer {
   stock: number;
   price: number;
   images: string[];
-  reviews: {
-    author: string;
-    rating: number;
-    text: string;
-    date: string;
-  }[];
+  reviews: Review[];
+}
+
+export interface Review {
+  author: string;
+  rating: number;
+  text: string;
+  date: string;
 }
 
 export default async function Home() {
