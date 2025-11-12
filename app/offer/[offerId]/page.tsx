@@ -21,7 +21,7 @@ export default function OfferPage({
 }) {
   const supabase = createClient();
   const { offerId } = use(params);
-  const { addToCart } = useCartStore();
+  const { addToCart, offers, removeFromCart } = useCartStore();
   const [offer, setOffer] = useState<Offer>();
 
   useEffect(() => {
@@ -98,9 +98,15 @@ export default function OfferPage({
             <Text my={5} fontWeight={"bold"} textAlign={"center"}>
               • Enjoy free shipping!
             </Text>
-            <Button size={"2xl"} onClick={() => addToCart(offer.id)}>
-              Add to cart
-            </Button>
+            {offers.includes(offer.id) ? (
+              <Button size={"2xl"} onClick={() => removeFromCart(offer.id)}>
+                Remove from cart
+              </Button>
+            ) : (
+              <Button size={"2xl"} onClick={() => addToCart(offer.id)}>
+                Add to cart
+              </Button>
+            )}
             <Text textAlign={"center"} my={10}>
               <Icon size={"2xl"}>
                 <MdLocalShipping />
