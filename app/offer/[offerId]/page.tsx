@@ -23,6 +23,7 @@ export default function OfferPage({
   const { offerId } = use(params);
   const { addToCart, offers, removeFromCart } = useCartStore();
   const [offer, setOffer] = useState<Offer>();
+  const [mainImage, setMainImage] = useState<string>("");
 
   useEffect(() => {
     const fetchOffer = async () => {
@@ -59,6 +60,8 @@ export default function OfferPage({
             <Box display={"flex"} flexDir={"column"} gap={"4"}>
               {offer?.images?.map((url, index) => (
                 <Image
+                  onClick={() => setMainImage(url)}
+                  onMouseEnter={() => setMainImage(url)}
                   key={index}
                   className="rounded-lg"
                   src={url}
@@ -70,7 +73,7 @@ export default function OfferPage({
             </Box>
             <Image
               className="rounded-lg h-fit! max-lg:max-w-8/12!"
-              src={offer.image_url}
+              src={mainImage || offer.images[0]}
               alt={offer.title}
               width={500}
               height={500}
