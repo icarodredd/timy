@@ -73,7 +73,7 @@ export default function OfferPage({
             </Box>
             <Image
               className="rounded-lg h-fit! max-lg:max-w-8/12!"
-              src={mainImage || offer.images[0]}
+              src={mainImage || offer.images?.[0] || offer.image_url}
               alt={offer.title}
               width={500}
               height={500}
