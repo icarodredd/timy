@@ -46,7 +46,15 @@ export default function OfferPage({
   return (
     <main style={{ paddingTop: "10vh" }}>
       {offer && (
-        <Box display={"flex"} justifyContent={"space-between"}>
+        <Box
+          display={"flex"}
+          justifyContent={"space-between"}
+          gap={{
+            base: "20px",
+            md: "10px",
+          }}
+          flexDir={{ base: "column", md: "row" }}
+        >
           <Box display={"flex"} gap={"4"} justifyContent={"start"}>
             <Box display={"flex"} flexDir={"column"} gap={"4"}>
               {offer?.images?.map((url, index) => (
@@ -61,15 +69,23 @@ export default function OfferPage({
               ))}
             </Box>
             <Image
-              className="rounded-lg"
+              className="rounded-lg h-fit! max-lg:max-w-8/12!"
               src={offer.image_url}
               alt={offer.title}
               width={500}
               height={500}
             />
           </Box>
-          <Box display={"flex"} flexDir={"column"} width={"60%"} gap={4}>
-            <Box display={"flex"} justifyContent={"space-between"}>
+          <Box
+            display={"flex"}
+            flexDir={"column"}
+            width={{ base: "100%", md: "60%" }}
+            gap={4}
+          >
+            <Box
+              display={"flex"}
+              justifyContent={{ base: "space-evenly", md: "space-between" }}
+            >
               <Text
                 textTransform={"uppercase"}
                 fontSize={"2xl"}
@@ -77,7 +93,7 @@ export default function OfferPage({
               >
                 {offer.title}
               </Text>
-              <Text fontSize={"xl"}>
+              <Box fontSize={"xl"}>
                 <RatingGroup.Root
                   count={5}
                   defaultValue={getMedianRating(offer.reviews)}
@@ -88,11 +104,17 @@ export default function OfferPage({
                   <RatingGroup.Control />
                 </RatingGroup.Root>{" "}
                 {offer.reviews.length} reviews
-              </Text>
+              </Box>
             </Box>
 
-            <Text fontSize={"lg"}>{offer.description}</Text>
-            <Text fontSize={"4xl"} fontWeight={"bold"}>
+            <Text textAlign={{ mdDown: "center" }} fontSize={"lg"}>
+              {offer.description}
+            </Text>
+            <Text
+              textAlign={{ mdDown: "center" }}
+              fontSize={"4xl"}
+              fontWeight={"bold"}
+            >
               ${offer.price.toFixed(2)}
             </Text>
             <Text my={5} fontWeight={"bold"} textAlign={"center"}>
