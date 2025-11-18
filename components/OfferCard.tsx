@@ -34,15 +34,12 @@ export default function OfferCard({ offer }: { offer: Offer }) {
           </Text>
         </Card.Body>
         <Card.Footer gap="2">
-          <Button variant="solid">Buy now</Button>
           {offers.includes(offer.id) ? (
-            <Button onClick={() => removeFromCart(offer.id)} variant="ghost">
+            <Button onClick={() => removeFromCart(offer.id)}>
               Remove from cart
             </Button>
           ) : (
-            <Button onClick={() => addToCart(offer.id)} variant="ghost">
-              Add to cart
-            </Button>
+            <Button onClick={() => addToCart(offer.id)}>Add to cart</Button>
           )}
         </Card.Footer>
       </Card.Root>
