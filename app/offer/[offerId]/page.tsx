@@ -118,7 +118,10 @@ export default function OfferPage({
               fontSize={"4xl"}
               fontWeight={"bold"}
             >
-              ${offer.price.toFixed(2)}
+              {new Intl.NumberFormat("en-US", {
+                style: "currency",
+                currency: "USD",
+              }).format(offer.price)}
             </Text>
             <Text my={5} fontWeight={"bold"} textAlign={"center"}>
               • Enjoy free shipping!
