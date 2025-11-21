@@ -5,6 +5,7 @@ import { Button, CloseButton, Drawer, Portal } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { FaCartShopping } from "react-icons/fa6";
 import OfferCard from "../OfferCard";
+import Link from "next/link";
 
 const Cart = () => {
   const { offers } = useCartStore();
@@ -47,8 +48,9 @@ const Cart = () => {
                 : "You don't have items on the cart..."}
             </Drawer.Body>
             <Drawer.Footer>
-              <Button variant="outline">Cancel</Button>
-              <Button>Save</Button>
+              <Button asChild variant={"outline"}>
+                <Link href={"/checkout"}>Proceed to purchase</Link>
+              </Button>
             </Drawer.Footer>
             <Drawer.CloseTrigger asChild>
               <CloseButton size="sm" />
