@@ -43,7 +43,11 @@ const Cart = () => {
             <Drawer.Body className="flex flex-col gap-4">
               {cartData && cartData.length > 0
                 ? cartData?.map((item) => (
-                    <OfferCard key={item.id} offer={item} />
+                    <OfferCard
+                      key={item.id}
+                      offer={item}
+                      bodyClassName="flex-none! justify-start!"
+                    />
                   ))
                 : "You don't have items on the cart..."}
             </Drawer.Body>

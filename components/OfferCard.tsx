@@ -5,10 +5,16 @@ import { useCartStore } from "@/hooks/useCartStore";
 import { Box, Button, Card, Image, Text } from "@chakra-ui/react";
 import Link from "next/link";
 
-export default function OfferCard({ offer }: { offer: Offer }) {
+export default function OfferCard({
+  offer,
+  bodyClassName,
+}: {
+  offer: Offer;
+  bodyClassName?: string;
+}) {
   const { addToCart, removeFromCart, offers } = useCartStore();
   return (
-    <Box className="w-full h-full">
+    <Box className={`w-full h-full`}>
       <Card.Root maxW="sm" height={"100%"} border={"none"} overflow="hidden">
         <Link href={`/offer/${offer.id}`}>
           <Image
@@ -18,7 +24,11 @@ export default function OfferCard({ offer }: { offer: Offer }) {
             alt={offer.title}
           />
         </Link>
-        <Card.Body justifyContent={"space-around"} gap="2">
+        <Card.Body
+          className={bodyClassName}
+          justifyContent={"space-around"}
+          gap="2"
+        >
           <Card.Title>{offer.title}</Card.Title>
           <Card.Description>{offer.description}</Card.Description>
           <Text
