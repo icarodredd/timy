@@ -52,9 +52,13 @@ const Cart = () => {
                 : "You don't have items on the cart..."}
             </Drawer.Body>
             <Drawer.Footer>
-              <Button asChild variant={"outline"}>
-                <Link href={"/checkout"}>Proceed to purchase</Link>
-              </Button>
+              {offers.length > 0 ? (
+                <Button asChild variant={"outline"}>
+                  <Link href={"/checkout"}>Proceed to purchase</Link>
+                </Button>
+              ) : (
+                <span>Add items to the cart to proceed to purchase.</span>
+              )}
             </Drawer.Footer>
             <Drawer.CloseTrigger asChild>
               <CloseButton size="sm" />
