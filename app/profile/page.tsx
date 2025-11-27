@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 
-interface FormValues {
+export interface ProfileFormValues {
   name: string;
   email: string;
   phoneNumber: string;
@@ -83,7 +83,7 @@ export default function ProfilePage() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormValues>();
+  } = useForm<ProfileFormValues>();
 
   const onSubmit = handleSubmit((data) => console.log(data));
 
