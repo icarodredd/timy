@@ -1,5 +1,6 @@
 "use client";
 
+import { useProfileStore } from "@/hooks/useProfileStore";
 import {
   Box,
   Button,
@@ -10,7 +11,7 @@ import {
   Select,
   createListCollection,
 } from "@chakra-ui/react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 
 export interface ProfileFormValues {
   name: string;
@@ -79,13 +80,15 @@ const regions = createListCollection({
 });
 
 export default function ProfilePage() {
+  const { profile, addValues } = useProfileStore();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<ProfileFormValues>();
+  } = useForm<ProfileFormValues>({ defaultValues: profile });
 
-  const onSubmit = handleSubmit((data) => console.log(data));
+  const onSubmit = handleSubmit((profileValues) => addValues(profileValues));
 
   return (
     <main style={{ paddingTop: "10vh" }}>
@@ -109,6 +112,7 @@ export default function ProfilePage() {
               Name <Field.RequiredIndicator />
             </Field.Label>
             <Input
+              defaultValue={profile.name}
               {...register("name", {
                 maxLength: 50,
                 pattern: {
@@ -126,6 +130,7 @@ export default function ProfilePage() {
               Email <Field.RequiredIndicator />
             </Field.Label>
             <Input
+              defaultValue={profile.email}
               {...register("email", {
                 pattern: {
                   value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
@@ -142,6 +147,7 @@ export default function ProfilePage() {
               Phone Number <Field.RequiredIndicator />
             </Field.Label>
             <Input
+              defaultValue={profile.phoneNumber}
               {...register("phoneNumber", {
                 pattern: {
                   value: /^\d{11}$/,
@@ -153,20 +159,18 @@ export default function ProfilePage() {
             />
             <Field.ErrorText>{errors.phoneNumber?.message}</Field.ErrorText>
           </Field.Root>
-          <Field.Root
-            {...register("streetAddress", {
-              pattern: {
-                value: /^[a-zA-Z0-9]*$/,
-                message: "Enter a valid street adress",
-              },
-            })}
-            required
-            invalid={!!errors.streetAddress}
-          >
+          <Field.Root required invalid={!!errors.streetAddress}>
             <Field.Label>
               Street Adress <Field.RequiredIndicator />
             </Field.Label>
             <Input
+              defaultValue={profile.phoneNumber}
+              {...register("streetAddress", {
+                pattern: {
+                  value: /^[a-zA-Z0-9\s.,]+$/,
+                  message: "Enter a valid street address",
+                },
+              })}
               placeholder="8590 State Street East
 Olney, MD 20832"
               variant="subtle"
@@ -183,6 +187,7 @@ Olney, MD 20832"
                 City <Field.RequiredIndicator />
               </Field.Label>
               <Input
+                defaultValue={profile.city}
                 {...register("city", {
                   maxLength: 50,
                   pattern: {
@@ -224,6 +229,7 @@ Olney, MD 20832"
                 Postal Code <Field.RequiredIndicator />
               </Field.Label>
               <Input
+                defaultValue={profile.postalCode}
                 {...register("postalCode", {
                   pattern: {
                     value: /^\d{5}$/,
