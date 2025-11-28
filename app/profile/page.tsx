@@ -10,8 +10,10 @@ import {
   Portal,
   Select,
   createListCollection,
+  Alert,
 } from "@chakra-ui/react";
-import { Controller, useForm } from "react-hook-form";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 export interface ProfileFormValues {
   name: string;
@@ -81,19 +83,24 @@ const regions = createListCollection({
 
 export default function ProfilePage() {
   const { profile, addValues } = useProfileStore();
+  const [submitted, setSubmitted] = useState(false);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<ProfileFormValues>({ defaultValues: profile });
+  } = useForm<ProfileFormValues>();
 
-  const onSubmit = handleSubmit((profileValues) => addValues(profileValues));
+  const onSubmit = handleSubmit((profileValues) => {
+    addValues(profileValues);
+    setSubmitted(true);
+    setTimeout(() => setSubmitted(false), 3000);
+  });
 
   return (
     <main style={{ paddingTop: "10vh" }}>
       <Box
-        onSubmit={onSubmit}
+        onSubmit={(e) => onSubmit(e)}
         as={"form"}
         display={"flex"}
         width={"full"}
@@ -116,7 +123,7 @@ export default function ProfilePage() {
               {...register("name", {
                 maxLength: 50,
                 pattern: {
-                  value: /^[a-zA-Z\s]+$/,
+                  value: /^[\p{L}\s]+$/u,
                   message: "Name can only contain letters and spaces",
                 },
               })}
@@ -150,7 +157,7 @@ export default function ProfilePage() {
               defaultValue={profile.phoneNumber}
               {...register("phoneNumber", {
                 pattern: {
-                  value: /^\d{11}$/,
+                  value: /^\d+$/,
                   message: "Enter a valid phone number",
                 },
               })}
@@ -200,12 +207,22 @@ Olney, MD 20832"
               />
               <Field.ErrorText>{errors.city?.message}</Field.ErrorText>
             </Field.Root>
-            <Select.Root required collection={regions} variant={"subtle"}>
+            <Select.Root
+              required
+              collection={regions}
+              variant={"subtle"}
+              defaultValue={[profile.state]}
+            >
               <Select.HiddenSelect {...register("state")} />
               <Select.Label>Select state</Select.Label>
               <Select.Control>
                 <Select.Trigger>
-                  <Select.ValueText placeholder="Select state" />
+                  <Select.ValueText
+                    placeholder={
+                      regions.items.find((el) => el.value === profile.state)
+                        ?.label
+                    }
+                  />
                 </Select.Trigger>
                 <Select.IndicatorGroup>
                   <Select.Indicator />
@@ -231,8 +248,9 @@ Olney, MD 20832"
               <Input
                 defaultValue={profile.postalCode}
                 {...register("postalCode", {
+                  minLength: 5,
                   pattern: {
-                    value: /^\d{5}$/,
+                    value: /^\d+$/,
                     message: "Enter a valid postal code",
                   },
                 })}
@@ -245,6 +263,12 @@ Olney, MD 20832"
           <Button type="submit" size={"xl"}>
             Save
           </Button>
+          {submitted && (
+            <Alert.Root status="success" variant="surface">
+              <Alert.Indicator />
+              <Alert.Title>Your data is saved!</Alert.Title>
+            </Alert.Root>
+          )}
         </HStack>
       </Box>
     </main>
